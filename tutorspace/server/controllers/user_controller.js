@@ -1,6 +1,6 @@
 const User = require('../model/Usermodel'); // Replace with the actual path
 const bcryptHelper = require('../utils/bcryptHelper'); // Replace with actual path
-
+const jwtHelper = require('../utils/jwtHelper')
 // Modify the createUser method
 const createUser = async (req, res) => {
     try {
@@ -53,6 +53,7 @@ const getUserById = async (req, res) => {
 
 const login = async (req, res) => {
     try {
+        console.log("here")
         const user = await User.findOne({ email: req.body.email });
         if (!user) {
             return res.status(404).send({ message: 'User not found' });
@@ -67,6 +68,7 @@ const login = async (req, res) => {
         res.send({ user, token });
     } catch (error) {
         res.status(500).send(error);
+        console.log(error)
     }
 };
 

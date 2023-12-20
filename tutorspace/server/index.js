@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const userRouter = require('./routes/user_routes'); // Replace with the actual path to your user routes
+const tutorRouter  = require('./routes/tutorRoutes'); // Replace with the actual path to your user routes
+const studentRouter  = require('./routes/studentRoutes'); // Replace with the actual path to your user routes
 
 const app = express();
 const PORT = process.env.PORT || 3037;
@@ -20,6 +22,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Routes
 app.use('/user', userRouter); // Prefix all user routes with /api
+app.use('/tutors',tutorRouter ); // Prefix all user routes with /api
+app.use('/students', studentRouter);
 
 // Start the server
 app.listen(PORT, () => {
